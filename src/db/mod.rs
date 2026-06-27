@@ -1,14 +1,27 @@
+use std::path::PathBuf;
+
 #[derive(Debug)]
-pub struct MyStruct {
-    pub public_var: i64,
-    private_var: i64,
+pub enum DatasetType {
+    Detection,
+    Classification,
+    Segmentation,
 }
 
-impl MyStruct {
-    pub fn new(public_var: i64) -> Self {
-        MyStruct {
-            public_var,
-            private_var: 32,
+#[derive(Debug)]
+pub struct Dataset {
+    pub dataset_name: String,
+    pub root_dir: PathBuf,
+    dataset_id: u8,
+    pub dataset_type: DatasetType,
+}
+
+impl Dataset {
+    pub fn new(dataset_name: String, root_dir: PathBuf, dataset_type: DatasetType) -> Self {
+        Dataset {
+            dataset_name,
+            root_dir,
+            dataset_id: 0,
+            dataset_type,
         }
     }
 }
